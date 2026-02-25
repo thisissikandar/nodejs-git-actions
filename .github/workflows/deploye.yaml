@@ -1,4 +1,4 @@
-name: Deploye Nodejs applications
+name: Deploy Nodejs application
 
 on:
   push:
@@ -7,20 +7,15 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Deploye Via SSH
-        uses: appleboy/ssh-action@v0.1.10
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: phoenix
-          key: ${{ secrets.SSH_KEY }}
-          # port: ${{ secrets.SSH_PORT }}
-          script: |
-            cd /home/phoenix/projects/nodejs-git-actions
-            git pull origin main
-            docker compose up -d --build
+      - name: Deploy with Docker Compose
+        run: |
+          cd /home/phoenix/projects/nodejs-git-actions
+          git pull origin main
+          docker compose down
+          docker compose up -d --build

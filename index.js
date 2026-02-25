@@ -10,6 +10,10 @@ app.get("/users", (req, res) => {
   console.log("req>>", req.ip);
   return res.json({ resuestIp: req.ip });
 });
+app.get("/post", (req, res) => {
+  console.log("req>>", req.ip);
+  return res.json({ resuestIp: req.ip });
+});
 
 app.listen(process.env.PORT || 8000, () => {
   console.log("App Running on PORT", process.env.PORT || 8000);
