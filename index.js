@@ -8,7 +8,7 @@ app.get("/", (req, res) => {
 });
 app.get("/users", (req, res) => {
   console.log("req>>", req.ip);
-  return res.json({ resuestIp: req.ip });
+  return res.json({ resuestIp: req.ip, message: "Users Route" });
 });
 app.get("/post", (req, res) => {
   console.log("req>>", req.ip);
